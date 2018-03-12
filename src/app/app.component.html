@@ -1,0 +1,41 @@
+<!---
+
+Issue #1 reported by John Meier:
+
+A question regarding text color of focused tab. I noticed that the text color of the tab label changes when the focus leaves the tab. I have been unable to find away to keep the text color from changing when focus leaves an active tab. I was just wondering if you might know of a selector that exists that can be used to style text of focused tab, similar to mat-tab-link-active to style the active tab.
+
+
+Issue #2 reported by Jasjeet Kaur:
+
+Hi, I tried to follow your steps to link different components of my Angular app. But I am facing the problem, that when clicking on a tab, new link reloads in a new window rather than under the tab. Can you suggest what could be going wrong?
+
+
+
+
+
+
+Changes in Angular since last blog:
+
+MdTabsModule is now MatTabsModule
+md-tab-link is now mat-tab-link
+
+
+--->
+<div style="padding: 5px;">
+    <h1>Angular Material 5 Tab Example using mat-tab-nav-bar and mat-tab-link.</h1>
+    <nav mat-tab-nav-bar >
+        <a mat-tab-link
+           *ngFor="let routeLink of routeLinks; let i = index;"
+           [routerLink]="routeLink.link"
+           routerLinkActive
+           #rla="routerLinkActive"
+           [active]="activeLinkIndex === i"
+           (click)="activeLinkIndex = i"
+           [routerLinkActiveOptions]="{exact: true}"
+           [class] = getActiveClass(i)
+        >
+            {{routeLink.label}}
+        </a>
+    </nav>
+    <router-outlet></router-outlet>
+</div>
